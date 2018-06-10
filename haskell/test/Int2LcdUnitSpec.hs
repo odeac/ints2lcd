@@ -2,12 +2,7 @@
 module Int2LcdUnitSpec where
 
 
-
-import           Data.Maybe
-import qualified Data.Text as T
-import qualified Data.Set as Set
 import           Test.Hspec
-import           Test.Hspec.Checkers
 import           Test.QuickCheck
 
 import           Lib

@@ -1,7 +1,6 @@
 module LcdPropertiesSpec where
 
-import qualified Data.Text as T
-import qualified Data.Set as Set
+import           Data.Text(Text, unpack, pack)
 import           Test.Hspec
 import           Test.Hspec.Checkers
 import           Test.QuickCheck
@@ -10,17 +9,18 @@ import           Test.QuickCheck.Checkers
 
 import           Lib
 
+
 instance Arbitrary Lcd where
   arbitrary = do
     top <- textArb
     mid <- textArb
     bottom <- textArb
     return $ Lcd [top, mid, bottom]
-    where textArb :: Gen T.Text
-          textArb = T.pack <$> vectorOf 3 (arbitrary :: Gen Char)
+    where textArb :: Gen Text
+          textArb = pack <$> vectorOf 3 (arbitrary :: Gen Char)
 
-instance EqProp T.Text where
-  left =-= right = (T.unpack left) =-= (T.unpack right)
+instance EqProp Text where
+  left =-= right = (unpack left) =-= (unpack right)
 
 instance EqProp Lcd where
   (Lcd left) =-= (Lcd right) = left =-= right

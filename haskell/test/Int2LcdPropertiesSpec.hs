@@ -1,10 +1,9 @@
 module Int2LcdPropertiesSpec where
 
 import           Data.Maybe
-import qualified Data.Text as T
+import qualified Data.Text as Text
 import qualified Data.Set as Set
 import           Test.Hspec
-import           Test.Hspec.Checkers
 import           Test.QuickCheck
 
 import           Lib
@@ -14,7 +13,7 @@ getDigit = flip rem 10 . getNonNegative
 
 prop_checkLength :: NonEmptyList (NonNegative Int) -> Bool
 prop_checkLength xs =
-  (T.length $ fromJust $ ints2Lcd $ digits) == expectedLength
+  (Text.length $ fromJust $ ints2Lcd $ digits) == expectedLength
   where digits = map getDigit $ getNonEmpty xs
         expectedLength = (length digits) * 9 + 2
 
@@ -22,7 +21,7 @@ prop_checkContent :: [NonNegative Int] -> Bool
 prop_checkContent xs =
   and $ map isAllowed $ lcd
   where digits = map getDigit xs
-        lcd = T.unpack $ fromJust $ ints2Lcd digits
+        lcd = Text.unpack $ fromJust $ ints2Lcd digits
         charSet = Set.fromList [' ', '|', '_', '\n']
         isAllowed c = Set.member c charSet
 
