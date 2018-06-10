@@ -24,6 +24,9 @@ ints2Lcd input =
   where lcdToString (Lcd lcd) = intercalate "\n" lcd
         digit2Lcd n = M.lookup n digits
 
+digits :: M.Map Int Lcd
+digits = M.fromList $ zip [0..] $ map Lcd [d0, d1, d2, d3, d4, d5, d6, d7, d8, d9]
+
 d0 = [
   " _ ",
   "| |",
@@ -73,6 +76,3 @@ d9 = [
   " _ ",
   "|_|",
   " _|"]
-
-digits :: M.Map Int Lcd
-digits = M.fromList $ zip [0..] $ map Lcd [d0, d1, d2, d3, d4, d5, d6, d7, d8, d9]
