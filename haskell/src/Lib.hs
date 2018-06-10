@@ -4,11 +4,10 @@ module Lib
     ( ints2Lcd, Lcd(..), digits
     ) where
 
-import           Prelude hiding (unlines)
 import           Data.Foldable (fold)
 import qualified Data.Map.Strict as M
 import           Data.Monoid
-import           Data.Text (Text, strip, unlines, intercalate)
+import           Data.Text (Text, intercalate)
 
 
 data Lcd = Lcd [Text] deriving (Eq, Show)
